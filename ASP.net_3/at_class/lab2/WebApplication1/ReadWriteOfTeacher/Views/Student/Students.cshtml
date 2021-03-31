@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Students";
+}
+
+<h2>Students</h2>
+@{
+    List<string> students = ViewBag.Students as List<string>;
+    <ul>
+
+        @foreach (string s in students)
+        {
+            var array = s.Split(';');
+            <li>Student name: @array[1] </li>
+        }
+    </ul>
+}
+
+

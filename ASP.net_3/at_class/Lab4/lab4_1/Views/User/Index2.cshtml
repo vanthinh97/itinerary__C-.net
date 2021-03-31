@@ -1,0 +1,18 @@
+﻿@*@model IEnumerable<Lab4.Models.User>*@
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+
+@{ var user = Model;}
+@foreach (var item in user)
+{
+    @item.Name
+    <br />
+    @item.Address
+    <br />
+    @item.Email
+    <br />
+    <br />
+}

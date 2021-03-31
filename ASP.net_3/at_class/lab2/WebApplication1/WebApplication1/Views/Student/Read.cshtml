@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Write2";
+}
+
+<h2>ReadWrite2</h2>
+
+<h2>ĐỌC/GHI FILE</h2>
+
+<form action="@Url.Action("Read","Student")" method="post">
+    <div>ID: </div><input name="id" value="@ViewBag.ID" />
+    <div>Name: </div><input name="Name" value="@ViewBag.Name" />
+    <div>Class: </div><input name="class" value="@ViewBag.Class" />
+    <hr />
+    <input type="submit" value="Search" />
+</form>
+@*@{ Html.BeginForm("Write", "Student");}
+    <input type="submit" value="Submit" />
+@{Html.EndForm();}*@
+<h2>@ViewBag.Message</h2>

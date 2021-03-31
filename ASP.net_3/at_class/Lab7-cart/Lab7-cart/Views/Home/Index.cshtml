@@ -1,0 +1,31 @@
+﻿@using Lab7_cart.Models
+@{
+    List<Products> lstNewProducts = ViewBag.NewProducts;
+}
+
+<div class="shop-product-wrap grid with-pagination row space-db--30 shop-border">
+    <div class="row product_cards">
+        @{
+            foreach (var item in lstNewProducts)
+            {
+
+                <div style="padding: 15px 30px;" class="card col-4">
+                    <img src="https://vepic.edu.vn/wp-content/uploads/2020/01/Bia-1-SGK-To%C3%A1n-1.jpg" class="card-img-top" alt="..." />
+                    <div>
+                        <h2 class="card-title">@item.ProductName</h2>
+                        <div class="card_footer">
+                            <h4>@item.UnitPrice</h4>
+                            <div>
+                                <p>
+                                    @Html.ActionLink("Add to cart", "AddToCart", "Home",
+                                    new { @Id = item.Id}, new { @class = "btn btn-primary" })
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+</div>

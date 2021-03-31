@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+@{Html.BeginForm("Register", "Student");}
+
+    Student Id: <br>@Html.TextBox("StuID")
+    <br />
+    Student Name: <br>@Html.TextBox("StuName")
+    <br />
+    Mark: <br>@Html.TextBox("StuMark")
+    <br />
+    <input type="submit" value="Write" />
+    @{Html.EndForm();}
+
+    @{Html.BeginForm("Read", "Student");}
+    <input type="submit" value="Read" />
+    @{Html.EndForm();}
+
+

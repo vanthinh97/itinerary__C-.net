@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+@{
+    var list = new[] { "New York", "Philadelphia", "California" };
+}
+
+@using (Html.BeginForm())
+{
+
+    @Html.Label("User Name:")
+    <br />
+    @Html.TextBox("UserName")
+    <br />
+    <br />
+    @Html.Label("Address:")
+    <br />
+    @Html.TextArea("Address")
+    <br />
+    <br />
+    @Html.Label("Password:")
+    <br />
+    @Html.Password("Password")
+    <br />
+    <br />
+    @Html.Label("I need updates on my mail:")
+    @Html.CheckBox("ChkEmail")
+    <br />
+    <br />
+    @Html.Label("Select your city:")
+    @Html.DropDownList("City", new SelectList(list), "Choose")
+    <br />
+    @Html.Label("Male:")@Html.RadioButton("Gender", "Male", true)
+    <br />
+    @Html.Label("Female:")@Html.RadioButton("Gender", "Female")
+    <br />
+    <br />
+    <br />
+    <br />
+    <input type="submit" value="Submit">
+
+}
+

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Validate";
+}
+
+<h2>Validate</h2>
+
+@using (Html.BeginForm())
+{
+    <div>Name:</div>
+    <input type="text" name="Fullname" />
+    <br />
+    @Html.ValidationMessage("Fullname")
+    <div>Age:</div>
+    <input type="text" name="Age" />
+    <br />
+    @Html.ValidationMessage("Age")
+
+
+    <br />
+    <input type="submit" value="Save" />
+}

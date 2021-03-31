@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<table class="table table-bordered">
+    <tr>
+        <td>Product Name</td>
+        <td>
+            <input type="text" name="sProductName" id="ProductName" class="form-control" required="" />
+        </td>
+    </tr>
+    <tr>
+        <td>Unit Price</td>
+        <td>
+            <input type="text" name="sUnitPrice" id="UnitPrice" class="form-control" required="" />
+        </td>
+    </tr>
+    <tr>
+        <td>Is Active?</td>
+        <td>
+            <input type="text" name="sIsActive" id="IsActive" class="form-control" required="" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div style="text-align:center; display:inline-block;">
+                <input class="btn btn-primary" name="btnSave" id="btnSave" value="Save" type="button">
+            </div>
+        </td>
+    </tr>
+</table>
+<hr />
+<table id="tblProduct" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th align="left">ID</th>
+            <th align="left">Product Name</th>
+            <th align="left">Unit Price</th>
+            <th align="left">Is Active?</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+    $(function () {
+        LoadData();
+        $("#btnSave").click(function () {
+            //alert("");
+            var pro = {};
+            pro.ProductName = $("#ProductName").val();
+            pro.UnitPrice = $("#UnitPrice").val();
+            pro.IsActive = $("#IsActive").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Create")',
+                data: '{pro: ' + JSON.stringify(pro) + '}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                   // alert("Data has been added successfully.");
+                    LoadData();
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+            return false;
+        });
+    });
+
+    function LoadData() {
+        $("#tblProduct tbody tr").remove();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetProduct")',
+            dataType: 'json',
+            data: { id: '' },
+            success: function (data) {
+                var items = '';
+                $.each(data, function (i, item) {
+                    var rows = "<tr>"
+                        + "<td>" + item.Id + "</td>"
+                        + "<td>" + item.ProductName + "</td>"
+                        + "<td>" + item.UnitPrice + "</td>"
+                        + "<td>" + item.IsActive + "</td>"
+                    + "</tr>";
+                    $('#tblProduct tbody').append(rows);
+                });
+            },
+            error: function (ex) {
+                var r = jQuery.parseJSON(response.responseText);
+                alert("Message: " + r.Message);
+                alert("StackTrace: " + r.StackTrace);
+                alert("ExceptionType: " + r.ExceptionType);
+            }
+        });
+        return false;
+    }
+    </script>
+}

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Write";
+}
+
+<h2>Write</h2>
+
+<h2>ĐỌC/GHI FILE</h2>
+<form action="@Url.Action("Write","Student")" method="post">
+    <div>ID: </div><input name="id" />
+    <div>Name: </div><input name="Name" />
+    <div>Class: </div><input name="class" />
+    <hr />
+    <input type="submit" value="Submit" />
+    <h2>@ViewBag.Message</h2>
+</form>

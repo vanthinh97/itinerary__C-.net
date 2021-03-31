@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@{ var user = ViewBag.User;}
+@foreach (var item in user)
+{
+    @item.Name
+    <br />
+    @item.Address
+    <br />
+    @item.Email
+    <br />
+    <br />
+}

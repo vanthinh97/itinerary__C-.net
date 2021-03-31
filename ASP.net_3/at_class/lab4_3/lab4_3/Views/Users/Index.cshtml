@@ -1,0 +1,118 @@
+﻿@model PagedList.IPagedList<lab4_3.Models.User>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Users", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Full name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+@*<form method="get" action="/Users">
+        <p>
+            Title: <input type="text" name="searchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>*@
+
+
+@*<table id="tblCourse" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+@*@section Scripts
+    {
+        <script>
+            $(document).ready(function () {
+                $('#tblCourse').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+                    })
+            });
+        </script>
+    }*@

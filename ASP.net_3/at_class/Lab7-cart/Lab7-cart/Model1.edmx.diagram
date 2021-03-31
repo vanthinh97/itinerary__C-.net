@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ecfac7f87c9845d9b9a4d9ae955fb763" Name="Diagram1">
+        <EntityTypeShape EntityType="ShoppingDB_endModel.Categories" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDB_endModel.Customers" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDB_endModel.OrderDetails" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDB_endModel.Orders" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDB_endModel.Products" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ShoppingDB_endModel.FK_dbo_Products_dbo_Categories_Categories_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingDB_endModel.FK_dbo_Customers_dbo_Orders_Orders_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingDB_endModel.FK_dbo_Orders_dbo_OrderDetails_OrderDetails_OrderID_OrderDetails_ProID" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingDB_endModel.FK_dbo_Products_dbo_OrderDetails_OrderDetails_OrderID_OrderDetails_ProID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@*Lab 2.2*@
+<form action="/FileUpload/Upload" method="post" enctype="multipart/form-data">
+    <div>Hinh anh</div>
+    <input name="Image" type="file" />
+
+    <div>Tai lieu</div>
+    <input name="Document" type="file" />
+    <hr />
+    <input type="submit" value="Upload" />
+</form>
+

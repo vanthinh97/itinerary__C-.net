@@ -1,0 +1,62 @@
+﻿@model IEnumerable<lab5_2.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Student List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table" id="tblCourse">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstMidName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstMidName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#tblCourse').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+            })
+        });
+    </script>
+}
+
+

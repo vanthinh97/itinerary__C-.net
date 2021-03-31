@@ -1,0 +1,4 @@
+Làm lại bài up hình ảnh có show được ảnh
+Bài đọc ghi dữ liệu: Tạo 1 DB để lưu trữ, 
+		từ đó để dọc dữ liệu ra
+Làm bài máy tính 

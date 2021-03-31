@@ -1,0 +1,80 @@
+﻿
+@model IEnumerable<Training.Models.TblUsers>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Student Management</h2>
+@Html.Partial("_Add")
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#_add">Add +</button>
+<a href="@Url.Action("Create")" class="btn btn-success">Add</a>
+<p>
+
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>UserName</th>
+            <th>FullName</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="doituong-@item.Id">
+                <td>@item.Id</td>
+                <td>@item.UserName</td>
+                <td>@item.FullName</td>
+                <td>@item.Address</td>
+                <td>
+                    <a href="@Url.Action("Edit","Student", new { id = item.Id})">Edit 1</a>
+                    <a href="/Student/Edit/@item.Id">Edit 2</a>
+                    <button onclick="Delete('@item.Id')" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+
+
+<script>
+    function Delete(id) {
+     
+        swal({
+            title: "Are you sure?",
+            text: "Nếu xóa, bạn sẽ ko thể khôi phục lại!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "@Url.Action("DeleteAjax")",
+                        type: "post",                      
+                        data: {
+                            id: id
+                        },
+                        success: function (result) {
+                            if (result === "OK") {
+                                swal("Poof! Your imaginary file has been deleted!", {
+                                    icon: "success",
+                                });
+                                // ẩn doituong-id
+                                $("#doituong-" + id).hide();
+                            }
+                        }
+                    });
+
+                   
+                } else {
+                    swal("Ban chua xoa");
+                }
+            });
+    }
+</script>
